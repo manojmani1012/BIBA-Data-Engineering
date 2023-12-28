@@ -1,0 +1,21 @@
+CSV data with PySpark
+Importing  the csv files by using below commands:
+-
+import pyspark
+from pyspark.sql import SparkSession
+spark = SparkSession.builder.appName('Reading csv file').getOrCreate()
+file=spark.read.load("path.csv", format="csv"") -(using the absolute file path to avoid error)
+file.show()  - to show the top 20 rows of csv files.
+
+
+Using withColumnRenamed()-Used to change the column name
+
+file = file.withColumnRenamed("rme_size_grp","Grp_size")
+file.show()
+
+
+Using select -Selecting the particular column 
+
+ file = file.select('year','Grp_size','unit')
+ file.show()
+
